@@ -1,3 +1,24 @@
+// HTML tag 'required' technique: check that scripts.js has the same section commented/uncommented
+// $(document).ready(function(){
+//   $("form#survey").submit(function(event){
+//     event.preventDefault();
+//
+//     // define variables
+//     var firstName = $("input#first-name").val().trim();
+//     var movieGenre = $("select#movie-genre").val();
+//     var food = $("select#favorite-foods").val();
+//     var music = $("input:radio[name=music]:checked").val();
+//
+//     $(".confirm").show();
+//
+//     $("#genre").text(movieGenre);
+//     $("#food").text(food);
+//     $("#music").text(music);
+//
+//   });
+// });
+
+// Branching technique: check that scripts.js has the same section commented/uncommented
 $(document).ready(function(){
   $("form#survey").submit(function(event){
     event.preventDefault();
@@ -8,34 +29,26 @@ $(document).ready(function(){
     var food = $("select#favorite-foods").val();
     var music = $("input:radio[name=music]:checked").val();
 
-    $(".confirm").show();
+    if (firstName === "") {
+      $(".has-error").show();
+      $(".name").hide();
+      $("form#survey").submit(function(event){
+        var firstName = $("input#error-name").val().trim();
+        $(".confirm").show();
 
-    $("#genre").text(movieGenre);
-    $("#food").text(food);
-    $("#music").text(music);
+        $("#genre").text(movieGenre);
+        $("#food").text(food);
+        $("#music").text(music);
+      });
+    } else {
+      $(".confirm").show();
 
+      $("#genre").text(movieGenre);
+      $("#food").text(food);
+      $("#music").text(music);
+    }
   });
 });
-
-    // if (firstName == "") {
-    //   $(".has-error").show();
-    //   $(".name").hide();
-    //   $("form#survey").submit(function(event){
-    //     var firstName = $("input#error-name").val().trim();
-    //     $(".confirm").show();
-    //
-    //     $("#genre").text(movieGenre);
-    //     $("#food").text(food);
-    //     $("#music").text(music);
-    //   });
-    // } else {
-
-    // }
-    // $(".confirm").show();
-    //
-    // $("#genre").text(movieGenre);
-    // $("#food").text(food);
-    // $("#music").text(music);
 
     // if(firstName) {
     //   $(".confirm").show();
